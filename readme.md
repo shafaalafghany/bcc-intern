@@ -16,7 +16,7 @@ Dokumentasi API
 
 ### Register User (POST /)
 ***Request (body): JSON***
-
+```
    {
        "name": "Shafa Alafghany",
        "email": "shafa@domain.com",
@@ -24,9 +24,9 @@ Dokumentasi API
        "phone": "1234567890",
        "role": 2
    }
-
+```
 ***Response: JSON***
-
+```
  200:
     {
        "status": true,
@@ -68,18 +68,18 @@ Dokumentasi API
         "message": "Internal server error",
         "data": null
     }
-
+```
 ### Login User (POST /signin)
 
 ***Request (body): JSON***
-
+```
    {
        "email": "shafa@domain.com",
        "password": "123456"
    }
-
+```
 ***Response: JSON***
-
+```
  200:
     {
        "status": "Sign in successful",
@@ -116,14 +116,14 @@ Dokumentasi API
         "message": "Parameter 'password' required is missing",
         "data": null
     }
-
+```
 ### Get User by ID (GET /:id)
 
 ***Request (params): id***
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
 
 ***Response: JSON***
-
+```
  200:
     {
         "status": true,
@@ -162,14 +162,14 @@ Dokumentasi API
         "message": "User with bearer not match",
         "data": null
     }
-
+```
 ### Delete User (DELETE /:id)
 
 ***Request (params): id***
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
 
 ***Response: JSON***
-
+```
  200:
     {
         "status": true,
@@ -198,3 +198,4 @@ Dokumentasi API
         "message": "User with bearer not match",
         "data": null
     }
+```

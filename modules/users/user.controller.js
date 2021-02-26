@@ -19,7 +19,7 @@ module.exports = {
         signIn(req.body, (error, result) => {
             if(error) return ERROR(res, 500, false, error)
 
-            if(result.length === 0 ) return ERROR(res, 200, false, 'User not found')
+            if(result.length === 0 ) return ERROR(res, 403, false, 'Incorrect email or password')
             const data = result[0]
             data.token = jwt.sign({ user: data }, process.env.APP_KEY, {
                 expiresIn: (60 * 60 * 24 * 7),
@@ -88,7 +88,7 @@ module.exports = {
         deleteUser({ id: req.params.id }, (error, result) => {
             if(error) return ERROR(res, 500, false, error)
 
-            return SUCCESS(res, 200, true, 'User deleted')
+            return SUCCESS(result, 200, true, 'User deleted')
         })
     }
 }

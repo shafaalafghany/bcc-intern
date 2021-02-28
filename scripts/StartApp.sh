@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cd /var/app/current/;
+cd /var/app/current/
 
-node index.js &;
+node index.js &
 
-disown %1;
+disown %1

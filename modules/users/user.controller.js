@@ -88,7 +88,7 @@ module.exports = {
         deleteUser({ id: req.params.id }, (error, result) => {
             if(error) return ERROR(res, 500, false, error)
 
-            return SUCCESS(result, 200, true, 'User deleted')
+            return SUCCESS(res, 200, true, 'User deleted')
         })
     }
 }

@@ -2,6 +2,8 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 
+const PORT = process.env.PORT || 8080; // default for deploying in BCC AWS
+
 const app = express()
 require('dotenv').config()
 
@@ -13,4 +15,4 @@ app.use(express.json())
 const user = require('./modules/users/user.router')
 app.use('/api/users', user)
 
-app.listen(3000, () => console.log("Listen to port 3000"))
+app.listen(PORT, () => console.log(`Listen to port ${PORT}`))

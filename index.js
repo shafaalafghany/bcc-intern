@@ -11,6 +11,11 @@ app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json())
 
+//test
+app.get('/', (req, res) => {
+    res.send("API is ready !")
+})
+
 //Route Users
 const user = require('./modules/users/user.router')
 app.use('/api/users', user)

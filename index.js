@@ -24,4 +24,8 @@ app.use('/api/users', user)
 const product = require('./modules/products/product.router')
 app.use('/api/products', product)
 
+//Route Carts
+// const cart = require('./modules/carts/cart.router')
+// app.use('/api/carts', cart)
+
 app.listen(PORT, () => console.log(`Listen to port ${PORT}`))

@@ -12,7 +12,7 @@ Dokumentasi API
 - role: int
 
 # ENDPOINT
-## User (/users)
+## User (/api/users)
 
 ### Register User (POST /)
 ***Request (body): JSON***

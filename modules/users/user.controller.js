@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const { register, signIn, checkUserId, deleteUser } = require('./user.service')
+const { register, signIn, checkUserId, updateUser, deleteUser } = require('./user.service')
 const { payloadCheck } = require('../../middleware/payload.middleware')
 const { ERROR, SUCCESS } = require('../../utils/constant')
 
@@ -72,6 +72,29 @@ module.exports = {
             if(error) return ERROR(res, 500, false, error)
             
             return SUCCESS(res, 200, true, result[0])
+        })
+    },
+    updateUser: (req, res) => {
+        if(parseInt(req.params.id, 0) !== req.decoded.user.id) {
+            return ERROR(res, 501, false, 'User with bearer not match')
+        }
+        payload = {
+            name: '',
+            email: '',
+            phone: '',
+            address: '',
+            gender: '',
+        }
+
+        const verify = payloadCheck(req.body, payload, ['name', 'email', 'phone', 'address', 'gender'])
+        if(!verify.status) return ERROR(res, 501, false, verify.message)
+        
+        updateUser({ 
+            name: req.body.name, email: req.body.email, phone: req.body.phone, address: req.body.address, gender: req.body.gender, id: req.params.id,
+        }, (error, result) => {
+            if(error) return ERROR(res, 500, false, error)
+            
+            return SUCCESS(res, 200, true, 'Update successful')
         })
     },
     deleteUser: (req, res) => {

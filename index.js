@@ -20,4 +20,8 @@ app.get('/', (req, res) => {
 const user = require('./modules/users/user.router')
 app.use('/api/users', user)
 
+//Route Products
+const product = require('./modules/products/product.router')
+app.use('/api/products', product)
+
 app.listen(PORT, () => console.log(`Listen to port ${PORT}`))

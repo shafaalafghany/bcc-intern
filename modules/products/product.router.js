@@ -3,8 +3,8 @@ const { addProduct, checkProduct, checkProductId, updateProduct, deleteProduct }
 const { checkAdmin } = require('../../middleware/jwt.middleware')
 
 router.post('/', checkAdmin, addProduct)
-router.get('/', checkAdmin, checkProduct)
-router.get('/:id', checkAdmin, checkProductId)
+router.get('/', checkProduct)
+router.get('/:id', checkProductId)
 router.put('/:id', checkAdmin, updateProduct)
 router.delete('/:id', checkAdmin, deleteProduct)
 

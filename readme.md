@@ -2,8 +2,8 @@
 Dokumentasi API
 
 # MODEL
-## User
-- nama: string
+## Users
+- name: string
 - email: string
 - password: string
 - phone: string
@@ -11,10 +11,18 @@ Dokumentasi API
 - gender: string
 - role: int
 
+## Products
+- product_name: string
+- product_price: int
+- product_desc: string
+
 # ENDPOINT
 ## User (/api/users)
 
 ### Register User (POST /)
+
+**url: http://domain.com/api/users/**
+
 ***Request (body): JSON***
 ```
    {
@@ -71,6 +79,8 @@ Dokumentasi API
 ```
 ### Login User (POST /signin)
 
+**url: http://domain.com/api/users/signin**
+
 ***Request (body): JSON***
 ```
    {
@@ -122,6 +132,8 @@ Dokumentasi API
 ***Request (params): id***
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
 
+**url: http://domain.com/api/users/1**
+
 ***Response: JSON***
 ```
  200:
@@ -163,10 +175,52 @@ Dokumentasi API
         "data": null
     }
 ```
+
+### Update User (PUT /:id)
+
+***Request (params): id***
+
+**url: http://domain.com/api/users/1**
+
+***Request (body): JSON***
+```
+   {
+       "name": "Alafghany,
+       "email": "shafa@domain.com",
+       "phone": "0123456789",
+       "address": "Jalan jalan",
+       "gender": "Laki - Laki"
+   }
+```
+
+***Response: JSON***
+```
+ 200:
+    {
+        "status": true,
+        "message": "User updated"
+    }
+
+ 500:
+    {
+        "status": false,
+        "message": "Internal server error",
+        "data": null
+    }
+
+ 501:
+    {
+        "status": false,
+        "message": "User with bearer not match",
+        "data": null
+    }
+```
 ### Delete User (DELETE /:id)
 
 ***Request (params): id***
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+**url: http://domain.com/api/users/1**
 
 ***Response: JSON***
 ```
@@ -185,6 +239,7 @@ Dokumentasi API
             "message": "invalid signature"
         }
     }
+
  500:
     {
         "status": false,
@@ -196,6 +251,193 @@ Dokumentasi API
     {
         "status": false,
         "message": "User with bearer not match",
+        "data": null
+    }
+```
+
+## Product (/api/products)
+
+### Add Product (POST /)
+
+***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+***Request (body): JSON***
+```
+   {
+       "name": "Kopi 1",
+       "price": 20000,
+       "desc": "Kopi Jenis 1"
+   }
+```
+***Response: JSON***
+```
+ 200:
+    {
+        "status": true,
+        "message": "Add product successful"
+    }
+
+400:
+    {
+        "status": false,
+        "message": "Bearer token invalid",
+        "data": {
+            "name": "JsonWebTokenError",
+            "message": "invalid signature"
+        }
+    }
+
+ 500:
+    {
+        "status": false,
+        "message": "Internal server error",
+        "data": null
+    }
+
+ 501:
+    {
+        "status": false,
+        "message": "User with bearer not match",
+        "data": null
+    }
+```
+
+### Get All Product
+
+***Response: JSON***
+```
+ 200:
+    {
+        "status": true,
+        "message": [
+            {
+                "id_product": 1,
+                "product_name": "Kopi 1",
+                "product_price": 20000,
+                "product_desc": "Kopi Jenis 1"
+            },
+            {
+                "id_product": 2,
+                "product_name": "Kopi 2",
+                "product_price": 27000,
+                "product_desc": "Kopi Jenis 2"
+            },
+            {
+                "id_product": 3,
+                "product_name": "Kopi 3",
+                "product_price": 22000,
+                "product_desc": "Kopi Jenis 3"
+            }
+        ]
+    }
+
+ 500:
+    {
+        "status": false,
+        "message": "Internal server error",
+        "data": null
+    }
+```
+
+### Get User by ID (GET /:id)
+
+***Request (params): id***
+
+***Response: JSON***
+```
+ 200:
+    {
+        "status": true,
+        "message": [
+            {
+                "id_product": 1,
+                "product_name": "Kopi 1",
+                "product_price": 20000,
+                "product_desc": "Kopi Jenis 1"
+            }
+        ]
+    }
+
+ 500:
+    {
+        "status": false,
+        "message": "Internal server error",
+        "data": null
+    }
+```
+
+### Update User (PUT /:id)
+
+***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+***Request (body): JSON***
+```
+   {
+       "name": "Kopi 1000",
+       "price": 200000,
+       "desc": "Kopi Jenis Baru Boss"
+   }
+```
+
+***Response: JSON***
+```
+ 200:
+    {
+        "status": true,
+        "message": "Update product successful"
+    }
+
+ 400:
+    {
+        "status": false,
+        "message": "Bearer token invalid",
+        "data": {
+            "name": "JsonWebTokenError",
+            "message": "invalid signature"
+        }
+    }
+
+ 500:
+    {
+        "status": false,
+        "message": "Internal server error",
+        "data": null
+    }
+
+ 501:
+    {
+        "status": false,
+        "message": "Parameter 'desc' required is missing",
+        "data": null
+    }
+```
+
+### Delete Product (DELETE /:id)
+
+***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+***Response: JSON***
+```
+ 200:
+    {
+        "status": true,
+        "message": "Delete product successful"
+    }
+
+ 400:
+    {
+        "status": false,
+        "message": "Bearer token invalid",
+        "data": {
+            "name": "JsonWebTokenError",
+            "message": "invalid signature"
+        }
+    }
+
+ 500:
+    {
+        "status": false,
+        "message": "Internal server error",
         "data": null
     }
 ```

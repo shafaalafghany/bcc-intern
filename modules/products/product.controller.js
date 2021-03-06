@@ -9,10 +9,8 @@ module.exports = {
             name: '',
             price: 0,
             desc: '',
-            netto: 0,
         }
-        console.log(req.body)
-        const verify = payloadCheck(req.body, payload, ['name', 'price', 'desc', 'netto'])
+        const verify = payloadCheck(req.body, payload, ['name', 'price', 'desc',])
         if (!verify.status) return ERROR(res, 501, false, verify.message)
 
         addProduct(req.body, (error, result) => {

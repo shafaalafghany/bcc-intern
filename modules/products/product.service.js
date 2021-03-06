@@ -43,7 +43,7 @@ module.exports = {
     },
     updateProduct: (data, callback) => {
         connection.query(
-            `update ${tableName} set product_name = ?, product_price = ?, product_desc =? where id_product = ?`,
+            `update ${tableName} set product_name = ?, product_price = ?, product_desc = ? where id_product = ?`,
             [
                 data.name,
                 data.price,

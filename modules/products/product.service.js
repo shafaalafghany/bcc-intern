@@ -41,6 +41,22 @@ module.exports = {
             }
         )
     },
+    updateProduct: (data, callback) => {
+        connection.query(
+            `update ${tableName} set product_name = ?, product_price = ?, product_desc =? where id_product = ?`,
+            [
+                data.name,
+                data.price,
+                data.desc,
+                data.id,
+            ],
+            (err, res) => {
+                if (err) { return callback(err) }
+
+                return callback(null, res)
+            }
+        )
+    },
     deleteProduct: (data, callback) => {
         connection.query(
             `delete from ${tableName} where id_product = ?`,

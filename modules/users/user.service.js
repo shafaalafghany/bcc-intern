@@ -47,6 +47,25 @@ module.exports = {
             }
         )
     },
+    updateUser: (data, callback) => {
+        console.log(tableName)
+        connection.query(
+            `update ${tableName} set name = ?, email = ?, phone = ?, address = ?, gender = ? where id = ?`,
+            [
+                data.name,
+                data.email,
+                data.phone,
+                data.address,
+                data.gender,
+                data.id,
+            ],
+            (err, res) => {
+                if(err) { return callback(err) }
+
+                return callback(null, res)
+            }
+        )
+    },
     deleteUser: (data, callback) => {
         connection.query(
             `delete from ${tableName} where id = ?`,

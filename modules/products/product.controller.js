@@ -1,4 +1,4 @@
-const { addProduct, getAllProduct, getProductId, deleteProduct } = require('./product.service')
+const { addProduct, getAllProduct, getProductId, updateProduct, deleteProduct } = require('./product.service')
 const { payloadCheck } = require('../../middleware/payload.middleware')
 const { ERROR, SUCCESS } = require('../../utils/constant')
 
@@ -35,15 +35,33 @@ module.exports = {
 
         const verify = payloadCheck(req.params, payload, parseInt(['id']))
         if(!verify.status) return ERROR(res, 501, false, verify.message)
-        console.log(req.params.id)
 
         getProductId({id: req.params.id}, (error, result) => {
             if (error) return ERROR(res, 500, false, error)
 
-            if (!result) return ERROR(res, 500, false, error)
+            if (!result) return ERROR(res, 500, false, 'Internal server error')
             
             return SUCCESS(res, 200, true, result)
         })
+    },
+    updateProduct: (req, res) => {
+        payload = {
+            name: '',
+            price: 0,
+            desc: '',
+        }
+
+        const verify = payloadCheck(req.body, payload, ['name', 'price', 'desc'])
+        if (!verify.status) return ERROR(res, 500, false, error)
+
+        updateProduct({ id: req.params.id, name: req.body.name, price: req.body.price, desc: req.body.desc },
+            (error, result) => {
+                if (error) return ERROR(res, 500, false, error)
+
+                if (!result) return ERROR(res, 500, false, 'Internal server error')
+
+                return SUCCESS(res, 200, true, 'Update successful')
+            })
     },
     deleteProduct: (req, res) => {
 

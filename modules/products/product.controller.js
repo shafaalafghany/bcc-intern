@@ -18,7 +18,7 @@ module.exports = {
 
             if (!result) return ERROR(res, 500, false, 'Internal server error')
 
-            return SUCCESS(res, 200, 'Add product successful')
+            return SUCCESS(res, 200, true, 'Add product successful')
         })
     },
     checkProduct: (req, res) => {
@@ -52,7 +52,7 @@ module.exports = {
         }
 
         const verify = payloadCheck(req.body, payload, ['name', 'price', 'desc'])
-        if (!verify.status) return ERROR(res, 500, false, error)
+        if (!verify.status) return ERROR(res, 500, false, verify.message)
 
         updateProduct({ id: req.params.id, name: req.body.name, price: req.body.price, desc: req.body.desc },
             (error, result) => {

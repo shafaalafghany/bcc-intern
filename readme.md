@@ -21,8 +21,6 @@ Dokumentasi API
 
 ### Register User (POST /)
 
-**url: http://domain.com/api/users/**
-
 ***Request (body): JSON***
 ```
    {
@@ -79,8 +77,6 @@ Dokumentasi API
 ```
 ### Login User (POST /signin)
 
-**url: http://domain.com/api/users/signin**
-
 ***Request (body): JSON***
 ```
    {
@@ -132,8 +128,6 @@ Dokumentasi API
 ***Request (params): id***
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
 
-**url: http://domain.com/api/users/1**
-
 ***Response: JSON***
 ```
  200:
@@ -180,8 +174,6 @@ Dokumentasi API
 
 ***Request (params): id***
 
-**url: http://domain.com/api/users/1**
-
 ***Request (body): JSON***
 ```
    {
@@ -219,8 +211,6 @@ Dokumentasi API
 
 ***Request (params): id***
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
-
-**url: http://domain.com/api/users/1**
 
 ***Response: JSON***
 ```

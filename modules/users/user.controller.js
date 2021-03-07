@@ -21,11 +21,12 @@ module.exports = {
 
             if(result.length === 0 ) return ERROR(res, 403, false, 'Incorrect email or password')
             const data = result[0]
+            delete data.password
             data.token = jwt.sign({ user: data }, process.env.APP_KEY, {
                 expiresIn: (60 * 60 * 24 * 7),
                 algorithm: 'HS256',
             })
-            return SUCCESS(res, 200, 'Sign in successful', data.token)
+            return SUCCESS(res, 200, 'Sign in successful', data)
         })
     },
     createAccount: (req, res) => {

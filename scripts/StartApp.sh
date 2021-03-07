@@ -1,7 +1,9 @@
 #!/bin/bash
 
-cd /var/app/current/
+cd /var/app/current/;
 
-node index.js &
+. ~/.nvm/nvm.sh;
 
-disown %1
+nvm install 14 --lts;
+
+pm2 start --name=app index.js;

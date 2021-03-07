@@ -25,7 +25,7 @@ module.exports = {
                 expiresIn: (60 * 60 * 24 * 7),
                 algorithm: 'HS256',
             })
-            return SUCCESS(res, 200, 'Sign in successful', data)
+            return SUCCESS(res, 200, 'Sign in successful', data.token)
         })
     },
     createAccount: (req, res) => {
@@ -48,10 +48,12 @@ module.exports = {
             checkUserId({ id: result.insertId }, (errors, results) => {
                 if(errors) return ERROR(res, 500, false, errors)
                 const data = results[0]
+                delete data.password
                 data.token = jwt.sign({ user: data }, process.env.APP_KEY, {
                     expiresIn: (60 * 60 * 24 * 7),
                     algorithm: 'HS256',
                 })
+
 
                 return SUCCESS(res, 200, true, data)
             })
@@ -70,6 +72,7 @@ module.exports = {
 
         checkUserId({ id: req.params.id}, (error, result) => {
             if(error) return ERROR(res, 500, false, error)
+            delete result[0].password
             
             return SUCCESS(res, 200, true, result[0])
         })

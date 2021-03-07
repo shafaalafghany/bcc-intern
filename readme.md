@@ -16,8 +16,14 @@ Dokumentasi API
 - product_price: int
 - product_desc: string
 
+## Carts
+- id_product: int
+- product_name: string
+- quantity: int
+- id_user: int
+
 # ENDPOINT
-## User (/api/users)
+## Users (/api/users)
 
 ### Register User (POST /)
 
@@ -245,7 +251,7 @@ Dokumentasi API
     }
 ```
 
-## Product (/api/products)
+## Products (/api/products)
 
 ### Add Product (POST /)
 
@@ -412,6 +418,162 @@ Dokumentasi API
     {
         "status": true,
         "message": "Delete product successful"
+    }
+
+ 400:
+    {
+        "status": false,
+        "message": "Bearer token invalid",
+        "data": {
+            "name": "JsonWebTokenError",
+            "message": "invalid signature"
+        }
+    }
+
+ 500:
+    {
+        "status": false,
+        "message": "Internal server error",
+        "data": null
+    }
+```
+
+## Carts (/api/carts)
+
+### Add Cart (POST /)
+
+***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+***Request (body): JSON***
+```
+   {
+       "productName": "Kopi 1",
+       "idProduct": 1,
+       "idUser": 1,
+       "quantity": 2
+   }
+```
+
+***Response: JSON***
+```
+ 200:
+    {
+        "status": true,
+        "message": "Add cart successful"
+    }
+
+ 400:
+    {
+        "status": false,
+        "message": "Bearer token invalid",
+        "data": {
+            "name": "JsonWebTokenError",
+            "message": "invalid signature"
+        }
+    }
+
+ 500:
+    {
+        "status": false,
+        "message": "Internal server error",
+        "data": null
+    }
+```
+
+### Get All Carts (GET /)
+
+***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+***Response: JSON***
+```
+ 200:
+    {
+        "status": true,
+        "message": [
+            {
+                "id": 1,
+                "id_product": 1,
+                "product_name": "Kopi 1",
+                "quantity": 1,
+                "id_user": 1,
+            },
+            {
+                "id": 2,
+                "id_product": 2,
+                "product_name": "Kopi 2",
+                "quantity": 1,
+                "id_user": 1,
+            },
+            {
+                "id": 3,
+                "id_product": 3,
+                "product_name": "Kopi 3",
+                "quantity": 1,
+                "id_user": 1,
+            },
+        ]
+    }
+
+ 500:
+    {
+        "status": false,
+        "message": "Internal server error",
+        "data": null
+    }
+```
+
+### Update Cart (PUT /:id)
+
+***Request (params): id***
+
+***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+***Request (body): JSON***
+```
+   {
+       "quantity": 2,
+       "idUser": 1
+   }
+```
+
+***Response: JSON***
+```
+ 200:
+    {
+        "status": true,
+        "message": "Update cart successful"
+    }
+
+ 400:
+    {
+        "status": false,
+        "message": "Bearer token invalid",
+        "data": {
+            "name": "JsonWebTokenError",
+            "message": "invalid signature"
+        }
+    }
+
+ 500:
+    {
+        "status": false,
+        "message": "Internal server error",
+        "data": null
+    }
+```
+
+### Delete Cart (DELETE /:id)
+
+***Request (params): id***
+
+***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+***Response: JSON***
+```
+ 200:
+    {
+        "status": true,
+        "message": "Delete cart successful"
     }
 
  400:

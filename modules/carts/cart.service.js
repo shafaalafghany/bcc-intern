@@ -33,10 +33,11 @@ module.exports = {
     },
     updateCart: (data, callback) => {
         connection.query(
-            `update ${tableName} set quantity = ? where id_product = ?`,
+            `update ${tableName} set quantity = ? where id_product = ? and id_user = ?`,
             [
                 data.quantity,
-                data.idProduct
+                data.idProduct,
+                data.idUser,
             ],
             (err, res) => {
                 if (err) { return callback(err) }

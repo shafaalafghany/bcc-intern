@@ -5,7 +5,7 @@ const tableName = 'carts'
 module.exports = {
     addCart: (data, callback) => {
         connection.query(
-            `insert into ${tableName} (product_name, id_product, id_user) values (?,?,?)`,
+            `insert into ${tableName} (product_name, id_product, id_user, quantity) values (?,?,?,?)`,
             [
                 data.productName,
                 data.idProduct,

@@ -552,7 +552,7 @@ Dokumentasi API
     }
 ```
 
-### Update Cart (PUT /:id)
+### Update Cart (PUT /)
 
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
 

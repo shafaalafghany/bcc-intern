@@ -23,7 +23,7 @@ module.exports = {
         connection.query(
             `select * from ${tableName} where id_user = ?`,
             [
-                data.idUser,
+                data.id,
             ],
             (err, res) => {
                 if (err) { return callback(err) }

@@ -10,6 +10,7 @@ module.exports = {
                 data.productName,
                 data.idProduct,
                 data.idUser,
+                data.quantity,
             ],
             (err, res) => {
                 if (err) { return callback(err) }

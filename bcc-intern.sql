@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2021 at 04:59 PM
+-- Generation Time: Mar 09, 2021 at 05:01 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -36,6 +36,13 @@ CREATE TABLE `carts` (
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `carts`
+--
+
+INSERT INTO `carts` (`id`, `id_product`, `product_name`, `quantity`, `id_user`) VALUES
+(1, 1, 'Kopi 1', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +54,7 @@ CREATE TABLE `products` (
   `id_product` int(11) NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `product_price` int(200) NOT NULL,
+  `product_img` varchar(100) NOT NULL,
   `product_desc` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -54,10 +62,10 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id_product`, `product_name`, `product_price`, `product_desc`) VALUES
-(1, 'Kopi 1', 35000, 'Kopi 1'),
-(2, 'Kopi 2', 25000, 'Kopi 2'),
-(3, 'Kopi 3', 20000, 'Asek asek');
+INSERT INTO `products` (`id_product`, `product_name`, `product_price`, `product_img`, `product_desc`) VALUES
+(1, 'Kopi Robusta', 35000, 'robusta', 'Robusta memiliki citarasa pahit. Rasanya sangat simpel dan ini hanyalah kopi punya aroma tegas.'),
+(2, 'Kopi Arabika', 37000, 'arabica', 'Arabika memiliki lebih banyak (rasa) citrus. Rasa kopi ini agak asam dan aroma simpel.'),
+(3, 'Kopi Excelsa', 40000, 'exce;sa', 'Kopi Excelsa mempunyai citarasa dan aroma yang dikategorikan kuat dan dominan pahit.');
 
 -- --------------------------------------------------------
 
@@ -118,7 +126,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `products`

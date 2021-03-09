@@ -39,15 +39,15 @@ module.exports = {
     },
     updateCart: (req, res) => {
         payload = {
+            idProduct: 0,
             quantity: 0,
             idUser: 0,
         }
 
-        const verify = payloadCheck(req.body, payload, ['quantity', 'idUser'])
+        const verify = payloadCheck(req.body, payload, ['idProduct', 'quantity', 'idUser'])
         if (!verify.status) return ERROR(res, 500, false, verify.message)
 
-        updateCart({ quantity: req.body.quantity, idProduct: req.params.id, idUser: req.body.idUser },
-            (error, result) => {
+        updateCart(req.body, (error, result) => {
                 if (error) return ERROR(res, 500, false, error)
 
                 if (!result) return ERROR(res, 500, false, 'Internal server error')

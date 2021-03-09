@@ -8,9 +8,10 @@ module.exports = {
         payload = {
             name: '',
             price: 0,
+            img: '',
             desc: '',
         }
-        const verify = payloadCheck(req.body, payload, ['name', 'price', 'desc',])
+        const verify = payloadCheck(req.body, payload, ['name', 'price', 'img', 'desc',])
         if (!verify.status) return ERROR(res, 501, false, verify.message)
 
         addProduct(req.body, (error, result) => {
@@ -48,13 +49,14 @@ module.exports = {
         payload = {
             name: '',
             price: 0,
+            img: '',
             desc: '',
         }
 
-        const verify = payloadCheck(req.body, payload, ['name', 'price', 'desc'])
+        const verify = payloadCheck(req.body, payload, ['name', 'price', 'img', 'desc'])
         if (!verify.status) return ERROR(res, 500, false, verify.message)
 
-        updateProduct({ id: req.params.id, name: req.body.name, price: req.body.price, desc: req.body.desc },
+        updateProduct({ id: req.params.id, name: req.body.name, price: req.body.price, img: req.body.img, desc: req.body.desc },
             (error, result) => {
                 if (error) return ERROR(res, 500, false, error)
 

@@ -274,6 +274,7 @@ Dokumentasi API
    {
        "name": "Kopi 1",
        "price": 20000,
+       "img": "robusta",
        "desc": "Kopi Jenis 1"
    }
 ```
@@ -324,18 +325,21 @@ Dokumentasi API
                 "id_product": 1,
                 "product_name": "Kopi 1",
                 "product_price": 20000,
+                "product_img": "kopi 1",
                 "product_desc": "Kopi Jenis 1"
             },
             {
                 "id_product": 2,
                 "product_name": "Kopi 2",
                 "product_price": 27000,
+                "product_img": "kopi 2",
                 "product_desc": "Kopi Jenis 2"
             },
             {
                 "id_product": 3,
                 "product_name": "Kopi 3",
                 "product_price": 22000,
+                "product_img": "kopi 3",
                 "product_desc": "Kopi Jenis 3"
             }
         ]
@@ -365,6 +369,7 @@ Dokumentasi API
                 "id_product": 1,
                 "product_name": "Kopi 1",
                 "product_price": 20000,
+                "product_img": "kopi 1",
                 "product_desc": "Kopi Jenis 1"
             }
         ]
@@ -389,6 +394,7 @@ Dokumentasi API
    {
        "name": "Kopi 1000",
        "price": 200000,
+       "img": "kopi 1",
        "desc": "Kopi Jenis Baru Boss"
    }
 ```

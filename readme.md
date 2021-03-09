@@ -514,6 +514,13 @@ Dokumentasi API
 
 **Url: localhost:8080/api/carts/**
 
+***Request (body): JSON***
+```
+   {
+       "idUser": 1
+   }
+```
+
 ***Response: JSON***
 ```
  200:

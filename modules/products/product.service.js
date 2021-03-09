@@ -5,10 +5,11 @@ const tableName = 'products'
 module.exports = {
     addProduct: (data, callback) => {
         connection.query(
-            `insert into ${tableName} (product_name, product_price, product_desc) values (?,?,?)`,
+            `insert into ${tableName} (product_name, product_price,product_img, product_desc) values (?,?,?,?)`,
             [
                 data.name,
                 data.price,
+                data.img,
                 data.desc,
             ],
             (err, res) => {
@@ -43,10 +44,11 @@ module.exports = {
     },
     updateProduct: (data, callback) => {
         connection.query(
-            `update ${tableName} set product_name = ?, product_price = ?, product_desc = ? where id_product = ?`,
+            `update ${tableName} set product_name = ?, product_price = ?,product_img = ?, product_desc = ? where id_product = ?`,
             [
                 data.name,
                 data.price,
+                data.img,
                 data.desc,
                 data.id,
             ],

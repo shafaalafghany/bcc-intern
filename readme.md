@@ -510,16 +510,11 @@ Dokumentasi API
 
 ### Get All Carts (GET /)
 
+***Request (params): id***
+
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
 
-**Url: localhost:8080/api/carts/**
-
-***Request (body): JSON***
-```
-   {
-       "idUser": 1
-   }
-```
+**Url: localhost:8080/api/carts/1**
 
 ***Response: JSON***
 ```

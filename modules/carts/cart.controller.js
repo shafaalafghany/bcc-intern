@@ -24,14 +24,17 @@ module.exports = {
         })
     },
     checkCarts: (req, res) => {
-        payload ={
-            idUser: 0,
+        if(parseInt(req.params.id, 0) !== req.decoded.user.id) {
+            return ERROR(res, 501, false, 'User with bearer not match')
+        }
+        payload = {
+            id: '',
         }
 
-        const verify = payloadCheck(req.body, payload, ['idUser',])
+        const verify = payloadCheck(req.params, payload, parseInt(['id']))
         if (!verify.status) return ERROR(res, 501, false, verify.message)
 
-        getAllCarts(req.body, (error, result) => {
+        getAllCarts({ id: req.params.id}, (error, result) => {
             if (error) return ERROR(res, 500, false, error)
 
             return SUCCESS(res, 200, true, result)

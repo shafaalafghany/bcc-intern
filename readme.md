@@ -27,6 +27,8 @@ Dokumentasi API
 
 ### Register User (POST /)
 
+**Url: localhost:8080/api/users/**
+
 ***Request (body): JSON***
 ```
    {
@@ -83,6 +85,8 @@ Dokumentasi API
 ```
 ### Login User (POST /signin)
 
+**Url: localhost:8080/api/users/signin**
+
 ***Request (body): JSON***
 ```
    {
@@ -134,6 +138,8 @@ Dokumentasi API
 ***Request (params): id***
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
 
+**Url: localhost:8080/api/users/1**
+
 ***Response: JSON***
 ```
  200:
@@ -180,6 +186,8 @@ Dokumentasi API
 
 ***Request (params): id***
 
+**Url: localhost:8080/api/users/1**
+
 ***Request (body): JSON***
 ```
    {
@@ -217,6 +225,8 @@ Dokumentasi API
 
 ***Request (params): id***
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+**Url: localhost:8080/api/users/1**
 
 ***Response: JSON***
 ```
@@ -256,6 +266,8 @@ Dokumentasi API
 ### Add Product (POST /)
 
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+**Url: localhost:8080/api/products/**
 
 ***Request (body): JSON***
 ```
@@ -300,6 +312,8 @@ Dokumentasi API
 
 ### Get All Product
 
+**Url: localhost:8080/api/products/**
+
 ***Response: JSON***
 ```
  200:
@@ -335,9 +349,11 @@ Dokumentasi API
     }
 ```
 
-### Get User by ID (GET /:id)
+### Get Product by ID (GET /:id)
 
 ***Request (params): id***
+
+**Url: localhost:8080/api/products/1**
 
 ***Response: JSON***
 ```
@@ -362,9 +378,11 @@ Dokumentasi API
     }
 ```
 
-### Update User (PUT /:id)
+### Update Product (PUT /:id)
 
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+**Url: localhost:8080/api/products/1**
 
 ***Request (body): JSON***
 ```
@@ -412,6 +430,8 @@ Dokumentasi API
 
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
 
+**Url: localhost:8080/api/products/1**
+
 ***Response: JSON***
 ```
  200:
@@ -443,6 +463,8 @@ Dokumentasi API
 ### Add Cart (POST /)
 
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+**Url: localhost:8080/api/carts/**
 
 ***Request (body): JSON***
 ```
@@ -484,6 +506,8 @@ Dokumentasi API
 
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
 
+**Url: localhost:8080/api/carts/**
+
 ***Response: JSON***
 ```
  200:
@@ -524,13 +548,14 @@ Dokumentasi API
 
 ### Update Cart (PUT /:id)
 
-***Request (params): id***
-
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+**Url: localhost:8080/api/carts/**
 
 ***Request (body): JSON***
 ```
    {
+       "idProduct": 1,
        "quantity": 2,
        "idUser": 1
    }
@@ -563,6 +588,8 @@ Dokumentasi API
 ```
 
 ### Delete Cart (DELETE /:id)
+
+**Url: localhost:8080/api/carts/1**
 
 ***Request (params): id***
 

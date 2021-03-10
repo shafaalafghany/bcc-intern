@@ -32,6 +32,19 @@ module.exports = {
             }
         )
     },
+    getCartAmount: (data, callback) => {
+        connection.query(
+            `select count(product_name) from ${tableName} where id = ?`,
+            [
+                data.id,
+            ],
+            (err, res) => {
+                if (err) { return callback(err) }
+
+                return callback(null, res)
+            }
+        )
+    },
     updateCart: (data, callback) => {
         connection.query(
             `update ${tableName} set quantity = ? where id_product = ? and id_user = ?`,

@@ -22,7 +22,7 @@ module.exports = {
     },
     signIn: (data, callback) => {
         connection.query(
-            `select * from ${tableName} where email = ? and password = ?`,
+            `select * from ${tableName} where email = ? and password = ? LIMIT 1`,
             [
                 data.email,
                 data.password,

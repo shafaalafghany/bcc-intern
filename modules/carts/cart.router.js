@@ -4,7 +4,7 @@ const { checkBearer } = require('../../middleware/jwt.middleware')
 
 router.post('/', checkBearer, addCart)
 router.get('/:id', checkBearer, checkCarts)
-router.get('/:id', checkBearer, checkCartAmounts)
+router.get('/amounts/:id', checkBearer, checkCartAmounts)
 router.put('/', checkBearer, updateCart)
 router.delete('/:id', checkBearer, deleteCart)
 

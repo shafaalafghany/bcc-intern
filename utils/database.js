@@ -5,12 +5,7 @@ const db = mysql.createPool({
     database: process.env.DB_NAME,
     user: process.env.DB_USER,
     connectTimeout: 10000,
-})
-
-db.query('select 1 + 1 as result', (err) => {
-    if(err) return console.log(err)
-
-    return console.log("Connected to Database")
+    connectionLimit: 1000,
 })
 
 module.exports = db

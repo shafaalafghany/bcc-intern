@@ -56,8 +56,8 @@ DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id_product` int(11) NOT NULL,
   `product_name` varchar(255) NOT NULL,
-  `product_price` int(200) NOT NULL,
   `product_img` varchar(100) NOT NULL,
+  `product_price` int(200) NOT NULL,
   `product_desc` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -76,7 +76,7 @@ INSERT INTO `products` (`id_product`, `product_name`, `product_price`, `product_
 -- Table structure for table `transaction`
 --
 
-DROP TABLE IF EXISTS `transactions`;
+DROP TABLE IF EXISTS `transaction`;
 CREATE TABLE `transaction` (
   `id` int(11) NOT NULL,
   `invoice` varchar(60) NOT NULL,

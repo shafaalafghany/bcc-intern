@@ -33,6 +33,7 @@ CREATE TABLE `carts` (
   `id_product` int(11) NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `product_img` varchar(100) NOT NULL,
+  `product_price` int (200) NOT NULL,
   `quantity` int(11) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -41,9 +42,9 @@ CREATE TABLE `carts` (
 -- Dumping data for table `carts`
 --
 
-INSERT INTO `carts` (`id`, `id_product`, `product_name`, `product_img`, `quantity`, `id_user`) VALUES
-(1, 1, 'Kopi Robusta', 'robusta', 1, 1),
-(2, 2, 'Kopi Arabika', 'robusta', 1, 1);
+INSERT INTO `carts` (`id`, `id_product`, `product_name`, `product_img`, `product_price`, `quantity`, `id_user`) VALUES
+(1, 1, 'Kopi Robusta', 'robusta', 35000, 1, 1),
+(2, 2, 'Kopi Arabika', 'arabika', 37000, 1, 1);
 
 -- --------------------------------------------------------
 

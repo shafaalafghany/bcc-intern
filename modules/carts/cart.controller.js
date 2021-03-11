@@ -9,11 +9,12 @@ module.exports = {
             productName: '',
             idProduct: 0,
             imgProduct: '',
+            priceProduct: 0,
             idUser: 0,
             quantity: 0
         }
 
-        const verify = payloadCheck(req.body, payload, ['productName', 'idProduct', 'imgProduct', 'idUser', 'quantity'])
+        const verify = payloadCheck(req.body, payload, ['productName', 'idProduct', 'imgProduct', 'priceProduct', 'idUser', 'quantity'])
         if (!verify.status) return ERROR(res, 501, false, verify.message)
 
         addCart(req.body, (error, result) => {

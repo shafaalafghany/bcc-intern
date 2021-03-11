@@ -1,3 +1,4 @@
+const db = require('../../utils/database')
 const connection = require('../../utils/database')
 
 const tableName = 'products'
@@ -14,7 +15,6 @@ module.exports = {
             ],
             (err, res) => {
                 if (err) { return callback(err) }
-
                 return callback(null, res)
             }
         )
@@ -24,7 +24,7 @@ module.exports = {
             `select * from ${tableName}`,
             (err, res) => {
                 if (err) { return callback(err) }
-
+                
                 return callback(null, res)
             }
         )

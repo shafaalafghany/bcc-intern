@@ -8,11 +8,12 @@ module.exports = {
         payload = {
             productName: '',
             idProduct: 0,
+            imgProduct: '',
             idUser: 0,
             quantity: 0
         }
 
-        const verify = payloadCheck(req.body, payload, ['productName', 'idProduct', 'idUser', 'quantity'])
+        const verify = payloadCheck(req.body, payload, ['productName', 'idProduct', 'imgProduct', 'idUser', 'quantity'])
         if (!verify.status) return ERROR(res, 501, false, verify.message)
 
         addCart(req.body, (error, result) => {
@@ -34,7 +35,7 @@ module.exports = {
         const verify = payloadCheck(req.params, payload, parseInt(['id']))
         if (!verify.status) return ERROR(res, 501, false, verify.message)
 
-        getAllCarts({ id: req.params.id}, (error, result) => {
+        getAllCarts({ id: req.params.id }, (error, result) => {
             if (error) return ERROR(res, 500, false, error)
 
             return SUCCESS(res, 200, true, result)

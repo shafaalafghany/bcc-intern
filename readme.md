@@ -14,11 +14,13 @@ Dokumentasi API
 ## Products
 - product_name: string
 - product_price: int
+- product_img: string
 - product_desc: string
 
 ## Carts
 - id_product: int
 - product_name: string
+- product_img : string
 - quantity: int
 - id_user: int
 
@@ -136,6 +138,7 @@ Dokumentasi API
 ### Get User by ID (GET /:id)
 
 ***Request (params): id***
+
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
 
 **Url: localhost:8080/api/users/1**
@@ -224,6 +227,7 @@ Dokumentasi API
 ### Delete User (DELETE /:id)
 
 ***Request (params): id***
+
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
 
 **Url: localhost:8080/api/users/1**
@@ -385,6 +389,8 @@ Dokumentasi API
 
 ### Update Product (PUT /:id)
 
+***Request (params): id***
+
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
 
 **Url: localhost:8080/api/products/1**
@@ -434,6 +440,8 @@ Dokumentasi API
 
 ### Delete Product (DELETE /:id)
 
+***Request (params): id***
+
 ***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
 
 **Url: localhost:8080/api/products/1**
@@ -477,6 +485,7 @@ Dokumentasi API
    {
        "productName": "Kopi 1",
        "idProduct": 1,
+       "imgProduct": 'Kopi 1",
        "idUser": 1,
        "quantity": 2
    }
@@ -525,25 +534,52 @@ Dokumentasi API
             {
                 "id": 1,
                 "id_product": 1,
-                "product_name": "Kopi 1",
+                "product_name": 'Kopi 1',
+                "product_img": 'Kopi 1'
                 "quantity": 1,
                 "id_user": 1,
             },
             {
                 "id": 2,
                 "id_product": 2,
-                "product_name": "Kopi 2",
+                "product_name": 'Kopi 2',
+                "product_img": 'Kopi 2',
                 "quantity": 1,
                 "id_user": 1,
             },
             {
                 "id": 3,
                 "id_product": 3,
-                "product_name": "Kopi 3",
+                "product_name": 'Kopi 3',
+                "product_img": 'Kopi 3',
                 "quantity": 1,
                 "id_user": 1,
             },
         ]
+    }
+
+ 500:
+    {
+        "status": false,
+        "message": "Internal server error",
+        "data": null
+    }
+```
+
+### Get Cart Amounts by ID (GET /amounts)
+
+***Request (params): id***
+
+***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+**Url: localhost:8080/api/carts/amounts/1**
+
+***Response: JSON***
+```
+ 200:
+    {
+        "status": true,
+        "message": "count(product_name)": 1
     }
 
  500:

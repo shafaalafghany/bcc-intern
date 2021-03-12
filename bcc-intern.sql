@@ -17,16 +17,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Database: `bcc-intern`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `carts`
---
-
 DROP TABLE IF EXISTS `carts`;
 CREATE TABLE `carts` (
   `id` int(11) NOT NULL,
@@ -38,11 +28,29 @@ CREATE TABLE `carts` (
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
 
---
--- Table structure for table `transaction`
---
+DROP TABLE IF EXISTS `transaction_detail`;
+CREATE TABLE `transaction_detail` (
+  `id` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
+  `price` int(200) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `id_user` int(11) NOT NULL,
+  `id_transaction` int(11) NOT NULL,
+  `qty` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+INSERT INTO `transaction_detail` (`id`, `id_product`, `price`, `date`, `id_user`, `id_transaction`, `qty`) VALUES
+(1, 1, 6000, '2021-03-12 23:15:02', 1, 30, 1),
+(2, 1, 6000, '2021-03-12 23:17:53', 1, 31, 1),
+(3, 1, 6000, '2021-03-12 23:18:20', 1, 32, 1),
+(4, 1, 6000, '2021-03-12 23:18:44', 1, 33, 1),
+(5, 1, 6000, '2021-03-12 23:19:47', 1, 34, 1),
+(6, 1, 6000, '2021-03-12 23:23:31', 1, 35, 1),
+(7, 1, 6000, '2021-03-12 23:29:42', 1, 36, 1),
+(8, 1, 6000, '2021-03-12 23:30:01', 1, 37, 1);
+
 
 DROP TABLE IF EXISTS `transaction`;
 CREATE TABLE `transaction` (
@@ -53,9 +61,6 @@ CREATE TABLE `transaction` (
   `total_price` int(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `transaction`
---
 
 INSERT INTO `transaction` (`id`, `invoice`, `id_user`, `date`, `total_price`) VALUES
 (1, '1', 1, '2021-03-17 12:03:21', 6000),
@@ -96,42 +101,21 @@ INSERT INTO `transaction` (`id`, `invoice`, `id_user`, `date`, `total_price`) VA
 (36, 'INV/2102050035', 1, '2021-03-17 12:03:21', 6000),
 (37, 'INV/2102050036', 1, '2021-03-17 12:03:21', 6000);
 
--- --------------------------------------------------------
 
---
--- Table structure for table `transaction_detail`
---
-
-DROP TABLE IF EXISTS `transaction_detail`;
-CREATE TABLE `transaction_detail` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE `products` (
   `id_product` int(11) NOT NULL,
-  `price` int(200) NOT NULL,
-  `date` datetime NOT NULL DEFAULT current_timestamp(),
-  `id_user` int(11) NOT NULL,
-  `id_transaction` int(11) NOT NULL,
-  `qty` int(11) NOT NULL
+  `product_name` varchar(255) NOT NULL,
+  `product_img` varchar(100) NOT NULL,
+  `product_price` int(200) NOT NULL,
+  `product_desc` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `transaction_detail`
---
+INSERT INTO `products` (`id_product`, `product_name`, `product_img`, `product_price`, `product_desc`) VALUES
+(1, 'Kopi Robusta', 'robusta', 40000, 'Robusta memiliki citarasa pahit. Rasanya sangat simpel dan ini hanyalah kopi punya aroma tegas.'),
+(2, 'Kopi Arabika', 'arabica', 70000, 'Arabika memiliki lebih banyak (rasa) citrus. Rasa kopi ini agak asam dan aroma simpel.'),
+(3, 'Kopi Excelsa', 'excelsa', 40000, 'Kopi Excelsa mempunyai citarasa dan aroma yang dikategorikan kuat dan dominan pahit.');
 
-INSERT INTO `transaction_detail` (`id`, `id_product`, `price`, `date`, `id_user`, `id_transaction`, `qty`) VALUES
-(1, 1, 6000, '2021-03-12 23:15:02', 1, 30, 1),
-(2, 1, 6000, '2021-03-12 23:17:53', 1, 31, 1),
-(3, 1, 6000, '2021-03-12 23:18:20', 1, 32, 1),
-(4, 1, 6000, '2021-03-12 23:18:44', 1, 33, 1),
-(5, 1, 6000, '2021-03-12 23:19:47', 1, 34, 1),
-(6, 1, 6000, '2021-03-12 23:23:31', 1, 35, 1),
-(7, 1, 6000, '2021-03-12 23:29:42', 1, 36, 1),
-(8, 1, 6000, '2021-03-12 23:30:01', 1, 37, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -145,37 +129,10 @@ CREATE TABLE `users` (
   `role` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `users`
---
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `address`, `gender`, `role`) VALUES
 (1, 'Shafa', 'shafa@domain.com', '123456', '1234567890', NULL, NULL, 2),
 (2, 'Admin', 'admin@domain.com', '123456', '1234567890', NULL, NULL, 1);
-
---
--- Table structure for table `products`
---
-
-DROP TABLE IF EXISTS `products`;
-CREATE TABLE `products` (
-  `id_product` int(11) NOT NULL,
-  `product_name` varchar(255) NOT NULL,
-  `product_img` varchar(100) NOT NULL,
-  `product_price` int(200) NOT NULL,
-  `product_desc` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id_product`, `product_name`, `product_img`, `product_price`, `product_desc`) VALUES
-(1, 'Kopi Robusta', 'robusta', 40000, 'Robusta memiliki citarasa pahit. Rasanya sangat simpel dan ini hanyalah kopi punya aroma tegas.'),
-(2, 'Kopi Arabika', 'arabica', 70000, 'Arabika memiliki lebih banyak (rasa) citrus. Rasa kopi ini agak asam dan aroma simpel.'),
-(3, 'Kopi Excelsa', 'excelsa', 40000, 'Kopi Excelsa mempunyai citarasa dan aroma yang dikategorikan kuat dan dominan pahit.');
-
--- --------------------------------------------------------
 
 --
 -- Indexes for dumped tables

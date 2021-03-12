@@ -49,6 +49,10 @@ module.exports = {
         })
     },
     checkTransaction: (req, res) => {
+        if(parseInt(req.params.id, 0) !== req.decoded.user.id) {
+            return ERROR(res, 501, false, 'User with bearer not match')
+        }
+        
         payload = {
             id: '',
         }

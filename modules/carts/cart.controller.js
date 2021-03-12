@@ -1,4 +1,6 @@
-const { addCart, getAllCarts, getCartAmount, updateCart, deleteCart } = require('./cart.service')
+const { 
+    addCart, getAllCarts, getCartAmount, updateCart, deleteCart, deleteAllCart
+ } = require('./cart.service')
 const { payloadCheck } = require('../../middleware/payload.middleware')
 const { ERROR, SUCCESS } = require('../../utils/constant')
 
@@ -91,5 +93,5 @@ module.exports = {
 
             return SUCCESS(res, 200, true, 'Cart deleted')
         })
-    }
+    },
 }

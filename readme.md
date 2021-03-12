@@ -2,7 +2,7 @@
 Dokumentasi API
 
 # MODEL
-## Users
+## users
 - name: string
 - email: string
 - password: string
@@ -11,18 +11,32 @@ Dokumentasi API
 - gender: string
 - role: int
 
-## Products
+## products
 - product_name: string
 - product_price: int
 - product_img: string
 - product_desc: string
 
-## Carts
+## carts
 - id_product: int
 - product_name: string
 - product_img : string
 - quantity: int
 - id_user: int
+
+## transactions
+- invoice: varchar
+- id_user: int
+- date: datetime
+- total_price: int
+
+## transaction_detail
+- id_product: int
+- price: int
+- date: datetime
+- id_user: int
+- id_transaction: int
+- qty: int
 
 # ENDPOINT
 ## Users (/api/users)
@@ -662,5 +676,168 @@ Dokumentasi API
         "status": false,
         "message": "Internal server error",
         "data": null
+    }
+```
+
+## Transaction (/api/transactions)
+
+### Add Transactions (POST /)
+
+***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+**Url: localhost:8080/api/transactions/**
+
+***Request (body): JSON***
+```
+    {
+        "date": "2021-03-17 12:03:21",
+        "totalPrice": 12000,
+        "idUser": 1,
+        "detail": [
+            {
+                "idProduct": 1,
+                "price": 6000,
+                "idUser": 1,
+                "qty": 2
+            }
+        ]
+    }
+```
+
+***Response: JSON***
+```
+ 200:
+    {
+        "status": true,
+        "message": "Add transaction successful",
+        "data": {
+            "date": "2021-03-17 12:03:21",
+            "idUser": 1,
+            "totalPrice": 12000,
+            "detail": [
+                {
+                    "idProduct": 1,
+                    "price": 6000,
+                    "idUser": 1,
+                    "qty": 2,
+                    "idTransaction": 38
+                }
+            ],
+            "invoice": "INV/2102050037"
+        }
+    }
+
+ 400:
+    {
+        "status": false,
+        "message": "Bearer token invalid",
+        "data": {
+            "name": "JsonWebTokenError",
+            "message": "invalid signature"
+        }
+    }
+
+ 500:
+    {
+        "status": false,
+        "message": "Internal server error",
+        "data": null
+    }
+```
+
+### Get Transactions by ID User (GET /:id)
+
+***Request (params): id***
+
+***Request (headers): (Required) Authorization: Bearer <JWT_TOKEN>***
+
+**Url: localhost:8080/api/transactions/1**
+
+***Response: JSON***
+```
+ 200:
+    {
+        "status": true,
+        "message": [
+            {
+                "id": 38,
+                "invoice": "INV/2102050037",
+                "id_user": 1,
+                "date": "2021-03-17T05:03:21.000Z",
+                "total_price": 12000
+            },
+            {
+                "id": 37,
+                "invoice": "INV/2102050036",
+                "id_user": 1,
+                "date": "2021-03-17T05:03:21.000Z",
+                "total_price": 12000
+            },
+            {
+                "id": 36,
+                "invoice": "INV/2102050035",
+                "id_user": 1,
+                "date": "2021-03-17T05:03:21.000Z",
+                "total_price": 12000
+            },
+        ]
+    }
+
+ 400:
+    {
+        "status": false,
+        "message": "Bearer token invalid",
+        "data": {
+            "name": "JsonWebTokenError",
+            "message": "invalid signature"
+        }
+    }
+
+ 500:
+    {
+        "status": false,
+        "message": "Internal server error",
+        "data": null
+    }
+```
+
+### Get All Transaction (GET /)
+
+**Url: localhost:8080/api/transactions/**
+
+***Response: JSON***
+```
+ 200:
+    {
+        "status": true,
+        "message": [
+            {
+                "id": 9,
+                "id_product": 1,
+                "price": 6000,
+                "date": "2021-03-12T16:45:54.000Z",
+                "id_user": 1,
+                "id_transaction": 38,
+                "qty": 2
+            },
+            {
+                "id": 8,
+                "id_product": 1,
+                "price": 6000,
+                "date": "2021-03-12T16:45:54.000Z",
+                "id_user": 1,
+                "id_transaction": 37,
+                "qty": 2
+            },
+            {
+                "id": 7,
+                "id_product": 1,
+                "price": 6000,
+                "date": "2021-03-12T16:45:54.000Z",
+                "id_user": 1,
+                "id_transaction": 36,
+                "qty": 2
+            },
+        ]
     }
 ```

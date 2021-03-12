@@ -74,5 +74,18 @@ module.exports = {
                 return callback(null, res)
             }
         )
+    },
+    deleteAllCart: (data, callback) => {
+        connection.query(
+            `delete from ${tableName} where id_user = ?`,
+            [
+                data.id,
+            ],
+            (err, res) => {
+                if (err) { return callback(err) }
+
+                return callback(null, res)
+            }
+        )
     }
 }

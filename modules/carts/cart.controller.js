@@ -20,7 +20,7 @@ module.exports = {
         addCart(req.body, (error, result) => {
             if (error) return ERROR(res, 500, false, error)
 
-            if (!result) return ERROR(res, 500, false, 'tes')
+            if (!result) return ERROR(res, 500, false, 'Internal server error')
 
             return SUCCESS(res, 200, true, 'Add cart successful')
         })

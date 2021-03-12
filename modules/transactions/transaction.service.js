@@ -1,17 +1,18 @@
 const db = require('../../utils/database')
 const connection = require('../../utils/database')
 
-const tableName = 'products'
+const tableName = 'transaction'
 
 module.exports = {
-    addProduct: (data, callback) => {
+    addTransaction: (data, callback) => {
         connection.query(
-            `insert into ${tableName} (product_name, product_price,product_img, product_desc) values (?,?,?,?)`,
+            `insert into ${tableName} (invoice, product_id, id_user, date, total_price) values (?,?,?,?,?)`,
             [
-                data.name,
-                data.price,
-                data.img,
-                data.desc,
+                data.invoice,
+                data.idProduct,
+                data.idUser,
+                data.date,
+                data.totalPrice,
             ],
             (err, res) => {
                 if (err) { return callback(err) }
@@ -20,19 +21,9 @@ module.exports = {
             }
         )
     },
-    getAllProduct: (callback) => {
+    getTransactionId: (data, callback) => {
         connection.query(
-            `select * from ${tableName}`,
-            (err, res) => {
-                if (err) { return callback(err) }
-                
-                return callback(null, res)
-            }
-        )
-    },
-    getProductId: (data, callback) => {
-        connection.query(
-            `select * from ${tableName} where id_product = ?`,
+            `select * from ${tableName} where id_user = ?`,
             [
                 data.id,
             ],
@@ -43,34 +34,4 @@ module.exports = {
             }
         )
     },
-    updateProduct: (data, callback) => {
-        connection.query(
-            `update ${tableName} set product_name = ?, product_price = ?,product_img = ?, product_desc = ? where id_product = ?`,
-            [
-                data.name,
-                data.price,
-                data.img,
-                data.desc,
-                data.id,
-            ],
-            (err, res) => {
-                if (err) { return callback(err) }
-
-                return callback(null, res)
-            }
-        )
-    },
-    deleteProduct: (data, callback) => {
-        connection.query(
-            `delete from ${tableName} where id_product = ?`,
-            [
-                data.id,
-            ],
-            (err, res) => {
-                if (err) { return callback(err) }
-
-                return callback(null, res)
-            }
-        )
-    }
 }

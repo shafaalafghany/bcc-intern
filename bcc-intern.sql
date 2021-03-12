@@ -58,8 +58,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id_product`, `product_name`, `product_img`, `product_price`, `product_desc`) VALUES
-(1, 'Kopi Robusta', 'robusta', 35000, 'Robusta memiliki citarasa pahit. Rasanya sangat simpel dan ini hanyalah kopi punya aroma tegas.'),
-(2, 'Kopi Arabika', 'arabica', 37000, 'Arabika memiliki lebih banyak (rasa) citrus. Rasa kopi ini agak asam dan aroma simpel.'),
+(1, 'Kopi Robusta', 'robusta', 40000, 'Robusta memiliki citarasa pahit. Rasanya sangat simpel dan ini hanyalah kopi punya aroma tegas.'),
+(2, 'Kopi Arabika', 'arabica', 70000, 'Arabika memiliki lebih banyak (rasa) citrus. Rasa kopi ini agak asam dan aroma simpel.'),
 (3, 'Kopi Excelsa', 'excelsa', 40000, 'Kopi Excelsa mempunyai citarasa dan aroma yang dikategorikan kuat dan dominan pahit.');
 
 -- --------------------------------------------------------

@@ -36,7 +36,7 @@ module.exports = {
     },
     getCartAmount: (data, callback) => {
         connection.query(
-            `select count(product_name) from ${tableName} where id = ?`,
+            `select count(product_name) from ${tableName} where id_user = ?`,
             [
                 data.id,
             ],

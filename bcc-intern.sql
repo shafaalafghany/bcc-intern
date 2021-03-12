@@ -41,30 +41,6 @@ CREATE TABLE `carts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
---
-
-DROP TABLE IF EXISTS `products`;
-CREATE TABLE `products` (
-  `id_product` int(11) NOT NULL,
-  `product_name` varchar(255) NOT NULL,
-  `product_img` varchar(100) NOT NULL,
-  `product_price` int(200) NOT NULL,
-  `product_desc` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id_product`, `product_name`, `product_img`, `product_price`, `product_desc`) VALUES
-(1, 'Kopi Robusta', 'robusta', 40000, 'Robusta memiliki citarasa pahit. Rasanya sangat simpel dan ini hanyalah kopi punya aroma tegas.'),
-(2, 'Kopi Arabika', 'arabica', 70000, 'Arabika memiliki lebih banyak (rasa) citrus. Rasa kopi ini agak asam dan aroma simpel.'),
-(3, 'Kopi Excelsa', 'excelsa', 40000, 'Kopi Excelsa mempunyai citarasa dan aroma yang dikategorikan kuat dan dominan pahit.');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `transaction`
 --
 
@@ -176,6 +152,30 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `address`, `gender`, `role`) VALUES
 (1, 'Shafa', 'shafa@domain.com', '123456', '1234567890', NULL, NULL, 2),
 (2, 'Admin', 'admin@domain.com', '123456', '1234567890', NULL, NULL, 1);
+
+--
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE `products` (
+  `id_product` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_img` varchar(100) NOT NULL,
+  `product_price` int(200) NOT NULL,
+  `product_desc` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id_product`, `product_name`, `product_img`, `product_price`, `product_desc`) VALUES
+(1, 'Kopi Robusta', 'robusta', 40000, 'Robusta memiliki citarasa pahit. Rasanya sangat simpel dan ini hanyalah kopi punya aroma tegas.'),
+(2, 'Kopi Arabika', 'arabica', 70000, 'Arabika memiliki lebih banyak (rasa) citrus. Rasa kopi ini agak asam dan aroma simpel.'),
+(3, 'Kopi Excelsa', 'excelsa', 40000, 'Kopi Excelsa mempunyai citarasa dan aroma yang dikategorikan kuat dan dominan pahit.');
+
+-- --------------------------------------------------------
 
 --
 -- Indexes for dumped tables

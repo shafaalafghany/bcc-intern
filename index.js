@@ -1,8 +1,8 @@
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
-
-const PORT = process.env.PORT || 8080; // default for deploying in BCC AWS
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 const app = express()
 require('dotenv').config()
@@ -28,4 +28,12 @@ app.use('/api/products', product)
 const cart = require('./modules/carts/cart.router')
 app.use('/api/carts', cart)
 
+// Route Transactions
+// const transaction = require('./modules/transactions/transaction.router')
+// app.use('/api/transactions')
+
+//Route swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+const PORT = process.env.PORT || 8080; // default for deploying in BCC AWS
 app.listen(PORT, () => console.log(`Listen to port ${PORT}`))

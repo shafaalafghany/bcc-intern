@@ -29,8 +29,8 @@ const cart = require('./modules/carts/cart.router')
 app.use('/api/carts', cart)
 
 // Route Transactions
-// const transaction = require('./modules/transactions/transaction.router')
-// app.use('/api/transactions')
+const transaction = require('./modules/transactions/transaction.router')
+app.use('/api/transactions', transaction)
 
 //Route swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));

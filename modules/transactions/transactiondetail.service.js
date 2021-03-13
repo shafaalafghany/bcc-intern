@@ -8,7 +8,7 @@ module.exports = {
         dataReady = []
 
         data.forEach(element => {
-            dataReady.push([element.idProduct, element.price, element.idUser, element.qty, element.idTransaction])
+            dataReady.push([element.id_product, element.product_price, element.id_user, element.quantity, element.idTransaction])
         });
 
         console.log(dataReady)

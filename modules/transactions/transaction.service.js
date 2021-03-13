@@ -40,7 +40,7 @@ module.exports = {
                     `insert into ${tableName} (invoice, id_user, date, total_price) values (?,?,?,?)`,
                     [
                         invoice,
-                        data.idUser,
+                        data.id_user,
                         data.date,
                         data.totalPrice,
                     ],

@@ -20,8 +20,8 @@ module.exports = {
         let totalPrice = 0
 
         for (let i = 0; i < dataSplit.length; i++) {
-            for (let j = 0; j < dataSplit[i].qty; j++) {
-                totalPrice += dataSplit[i].price                
+            for (let j = 0; j < dataSplit[i].quantity; j++) {
+                totalPrice += dataSplit[i].product_price                
                 
             }
         }
@@ -32,7 +32,7 @@ module.exports = {
 
         dataFix = {
             date: req.body.date,
-            idUser: req.body.idUser,
+            id_user: req.body.idUser,
             totalPrice: totalPrice,
             detail: dataSplit,
         }

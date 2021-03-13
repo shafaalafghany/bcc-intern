@@ -15,6 +15,18 @@
       {
         "name": "Users",
         "description": "API for users in the system"
+      },
+      {
+        "name": "Products",
+        "description": "API for products in the system"
+      },
+      {
+        "name": "Carts",
+        "description": "API for carts in the system"
+      },
+      {
+        "name": "Transaction",
+        "description": "API for transactions in the system"
       }
     ],
     "schemes": [

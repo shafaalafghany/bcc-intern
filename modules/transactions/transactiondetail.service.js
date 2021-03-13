@@ -8,13 +8,13 @@ module.exports = {
         dataReady = []
 
         data.forEach(element => {
-            dataReady.push([element.id_product, element.product_price, element.id_user, element.quantity, element.idTransaction])
+            dataReady.push([element.id_product, element.id_user, element.product_price, element.quantity, element.idTransaction])
         });
 
         console.log(dataReady)
 
         db.query(
-            `INSERT INTO transaction_detail (id_product, price, id_user, qty, id_transaction) VALUES ?`,
+            `INSERT INTO transaction_detail (id_product, id_user, price, qty, id_transaction) VALUES ?`,
             [
                 dataReady
             ],

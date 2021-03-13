@@ -45,7 +45,7 @@ module.exports = {
             console.log(result)
             dataFix.invoice = result.invoice
 
-            deleteAllCart({id: dataFix.idUser}, (error, result) => {
+            deleteAllCart({id: dataFix.id_user}, (error, result) => {
 
                 return SUCCESS(res, 200, true, 'Add transaction successful', dataFix)
             })

@@ -20,7 +20,10 @@ module.exports = {
         let totalPrice = 0
 
         for (let i = 0; i < dataSplit.length; i++) {
-            totalPrice += dataSplit[i].price
+            for (let j = 0; j < dataSplit[i].qty; j++) {
+                totalPrice += dataSplit[i].price                
+                
+            }
         }
 
         if (req.body.totalPrice != totalPrice) {

@@ -5,6 +5,9 @@ const { ERROR, SUCCESS } = require('../../utils/constant')
 let payload
 module.exports = {
     addProduct: (req, res) => {
+        if(req.decoded.user.role !== 1) {
+            return ERROR(res, 501, false, 'User is not admin')
+        }
         payload = {
             name: '',
             price: 0,
@@ -46,6 +49,9 @@ module.exports = {
         })
     },
     updateProduct: (req, res) => {
+        if(req.decoded.user.role !== 1) {
+            return ERROR(res, 501, false, 'User is not admin')
+        }
         payload = {
             name: '',
             price: 0,
@@ -66,7 +72,9 @@ module.exports = {
             })
     },
     deleteProduct: (req, res) => {
-
+        if(req.decoded.user.role !== 1) {
+            return ERROR(res, 501, false, 'User is not admin')
+        }
         payload = {
             id: '',
         }

@@ -10,6 +10,7 @@ require('dotenv').config()
 app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 //test
 app.get('/', (req, res) => {

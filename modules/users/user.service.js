@@ -14,7 +14,7 @@ module.exports = {
                 data.role,
             ],
             (err, res) => {
-                if(err) { return callback(err) }
+                if (err) { return callback(err) }
 
                 return callback(null, res)
             }
@@ -28,7 +28,7 @@ module.exports = {
                 data.password,
             ],
             (err, res) => {
-                if(err) { return callback(err) }
+                if (err) { return callback(err) }
 
                 return callback(null, res)
             }
@@ -41,7 +41,20 @@ module.exports = {
                 data.id,
             ],
             (err, res) => {
-                if(err) { return callback(err) }
+                if (err) { return callback(err) }
+
+                return callback(null, res)
+            }
+        )
+    },
+    checkUserEmail: (data, callback) => {
+        connection.query(
+            `select * from ${tableName} where email = ?`,
+            [
+                data.email,
+            ],
+            (err, res) => {
+                if (err) { return callback(err) }
 
                 return callback(null, res)
             }
@@ -60,7 +73,7 @@ module.exports = {
                 data.id,
             ],
             (err, res) => {
-                if(err) { return callback(err) }
+                if (err) { return callback(err) }
 
                 return callback(null, res)
             }
@@ -73,7 +86,7 @@ module.exports = {
                 data.id,
             ],
             (err, res) => {
-                if(err) { return callback(err) }
+                if (err) { return callback(err) }
 
                 return callback(null, res)
             }

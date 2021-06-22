@@ -1,10 +1,11 @@
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
-const { register, signIn, checkUserId, updateUser, deleteUser } = require('./user.service')
+const { genSaltSync, hashSync, compareSync } = require('bcryptjs')
+const { register, signIn, checkUserId, checkUserEmail, updateUser, deleteUser } = require('./user.service')
 const { payloadCheck } = require('../../middleware/payload.middleware')
 const { ERROR, SUCCESS } = require('../../utils/constant')
 
 let payload
+const salt = genSaltSync(10)
 
 module.exports = {
     signIn: (req, res) => {
@@ -16,17 +17,23 @@ module.exports = {
         const verify = payloadCheck(req.body, payload, ['email', 'password'])
         if(!verify.status) return ERROR(res, 501, false, verify.message)
 
-        signIn(req.body, (error, result) => {
-            if(error) return ERROR(res, 500, false, error)
+        checkUserEmail({ email: req.body.email }, (error, result) => {
+            if (error) return ERROR(res, 500, false, error)
 
-            if(result.length === 0 ) return ERROR(res, 403, false, 'Incorrect email or password')
-            const data = result[0]
-            delete data.password
-            data.token = jwt.sign({ user: data }, process.env.APP_KEY, {
-                expiresIn: (60 * 60 * 24 * 7),
-                algorithm: 'HS256',
+            const checkPassword = compareSync(req.body.password, result[0].password)
+            if (!checkPassword) return ERROR(res, 403, false, 'Incorrect email or password')
+
+            signIn(req.body, (errors, results) => {
+                if(errors) return ERROR(res, 500, false, errors)
+                const data = result[0]
+                delete data.password
+                data.token = jwt.sign({ user: data }, process.env.APP_KEY, {
+                    expiresIn: (60 * 60 * 24 * 7),
+                    algorithm: 'HS256',
+                })
+                
+                return SUCCESS(res, 200, 'Sign in successful', data)
             })
-            return SUCCESS(res, 200, 'Sign in successful', data)
         })
     },
     createAccount: (req, res) => {
@@ -35,11 +42,14 @@ module.exports = {
             email: '',
             password: '',
             phone: '',
-            role: 0,
+            role: '',
         }
 
-        const verify = payloadCheck(req.body, payload, ['name', 'email', 'password', 'phone', 'role'])
+        const verify = payloadCheck(req.body, payload, ['name', 'email', 'password', 'phone', parseInt(['role'])])
         if(!verify.status) return ERROR(res, 501, false, verify.message)
+
+        const password = hashSync(req.body.password, salt)
+        req.body.password = password
 
         register(req.body, (error, result) => {
             if(error) return ERROR(res, 500, false, error)
@@ -54,7 +64,6 @@ module.exports = {
                     expiresIn: (60 * 60 * 24 * 7),
                     algorithm: 'HS256',
                 })
-
 
                 return SUCCESS(res, 200, true, data)
             })
